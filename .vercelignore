@@ -1,0 +1,7 @@
+tests/
+reports/
+.pytest_cache/
+__pycache__/
+requirements-dev.txt
+pytest.ini
+04_Backtest_Overfitting_Detector_README.md

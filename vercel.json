@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [{ "source": "/api/py/(.*)", "destination": "/api/index" }],
+  "functions": {
+    "api/index.py": {
+      "memory": 1769,
+      "maxDuration": 60,
+      "includeFiles": "engine/**"
+    }
+  }
+}

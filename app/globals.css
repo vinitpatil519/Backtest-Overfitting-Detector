@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  /* Channel triplets, not hex: Tailwind needs `rgb(var(--x) / <alpha-value>)`
+     to support opacity modifiers such as `text-ink/80`. */
+  --canvas: 7 8 10;
+  --panel: 15 18 24;
+  --panel-2: 20 24 34;
+  --line: 35 41 54;
+  --ink: 230 234 242;
+  --muted: 139 148 168;
+  --pass: 52 211 153;
+  --warn: 251 191 36;
+  --fail: 248 113 113;
+  --beam: 96 165 250;
+}
+
+html,
+body {
+  background: rgb(var(--canvas));
+  color: rgb(var(--ink));
+}
+
+body {
+  min-height: 100vh;
+  background-image:
+    radial-gradient(900px 500px at 12% -10%, rgba(96, 165, 250, 0.09), transparent 60%),
+    radial-gradient(800px 500px at 92% 0%, rgba(167, 139, 250, 0.07), transparent 60%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .panel {
+    @apply rounded-xl border border-line bg-panel shadow-panel;
+  }
+
+  .panel-head {
+    @apply flex items-baseline justify-between gap-3 border-b border-line px-4 py-3;
+  }
+
+  .panel-title {
+    @apply text-[13px] font-semibold tracking-wide text-ink;
+  }
+
+  .panel-sub {
+    @apply text-[11px] text-muted;
+  }
+
+  .field-label {
+    @apply mb-1.5 flex items-baseline justify-between text-[11px] font-medium uppercase tracking-wider text-muted;
+  }
+
+  .input {
+    @apply w-full rounded-md border border-line bg-panel2 px-2.5 py-1.5
+           font-mono text-[12px] text-ink outline-none
+           transition focus:border-beam focus:ring-1 focus:ring-beam/40;
+  }
+
+  .chip {
+    @apply rounded-md border px-2 py-1 text-[11px] font-medium transition;
+  }
+
+  .stat-value {
+    @apply font-mono text-[19px] leading-none tracking-tight;
+  }
+
+  .stat-label {
+    @apply text-[10.5px] uppercase tracking-wider text-muted;
+  }
+}
+
+/* Range inputs: Tailwind has no primitive for the thumb, so style it here. */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgb(var(--line));
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgb(var(--beam));
+  border: 2px solid rgb(var(--canvas));
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgb(var(--beam));
+  border: 2px solid rgb(var(--canvas));
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222836;
+  border-radius: 999px;
+  border: 2px solid rgb(var(--canvas));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #313a4d;
+}
+
+@keyframes sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+
+.sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 33%;
+  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.45), transparent);
+  animation: sweep 1.25s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sweep::after {
+    animation: none;
+  }
+}
