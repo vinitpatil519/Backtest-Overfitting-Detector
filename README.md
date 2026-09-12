@@ -11,6 +11,15 @@ Monte Carlo validation.
 
 Everything is computed locally in NumPy and SciPy. No data leaves the machine.
 
+<img width="1902" height="967" alt="image" src="https://github.com/user-attachments/assets/c3aabc18-9d35-48ab-9d18-a606ab8d65f3" />
+
+
+<img width="1917" height="971" alt="image" src="https://github.com/user-attachments/assets/5654b130-2962-4550-aa85-010c185e3a19" />
+
+
+<img width="1917" height="973" alt="image" src="https://github.com/user-attachments/assets/5125003c-a206-4690-b34f-96f615c52f94" />
+
+
 ---
 
 ## What it computes
