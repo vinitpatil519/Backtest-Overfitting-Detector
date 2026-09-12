@@ -296,6 +296,5 @@ loads.
 Only statistically significant strategies pass.
 
 Research and education only. Not investment advice.
-#   B a c k t e s t - O v e r f i t t i n g - D e t e c t o r 
  
  
